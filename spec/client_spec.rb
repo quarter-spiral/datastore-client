@@ -24,7 +24,8 @@ describe Datastore::Client do
   end
 
   after do
-    File.delete(ENV['DATASTORE_BACKEND_MONGOID_CONFIG'])
+    file = ENV['DATASTORE_BACKEND_MONGOID_CONFIG']
+    File.delete(file) if File.exist?(file)
   end
 
   it "returns nil for not existing data sets" do
