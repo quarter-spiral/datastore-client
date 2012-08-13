@@ -25,6 +25,8 @@ client.get(uuid)
 client.get(uuid, scope: :public)
 ```
 
+If there is no data set for that UUID, ``nil`` is returned.
+
 ### Write a JSON data set
 ```ruby
 data_set = {hello: 'world'}
