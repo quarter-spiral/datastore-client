@@ -1,0 +1,39 @@
+#!/usr/bin/env ruby
+
+require 'bundler'
+Bundler.require
+
+require 'datastore-client/cli'
+
+require 'commander/import'
+
+program :name, 'Datastore Client CLI'
+program :version, '0.0.1'
+program :description, 'Get/Set data from the datastore'
+
+command :get do |c|
+  c.syntax = 'get <UUID> [options]'
+  c.description = 'Retrieves data for UUID from the datastore'
+  c.option '--scope STRING', String, 'private/public'
+  c.option '--host STRING', String, 'Host of the datastore'
+  c.action do |args, options|
+    options.default scope: 'public', host:
+'http://datastore-backend.herokuapp.com'
+    say Datastore::Client::CLI.get(args.first, options.scope,
+options.host)
+  end
+end
+
+command :set do |c|
+  c.syntax = 'set <UUID> <JSON> [options]'
+  c.description = 'Stores the JSON data for UUID in the datastore'
+  c.option '--scope STRING', String, 'private/public'
+  c.option '--host STRING', String, 'Host of the datastore'
+  c.action do |args, options|
+    options.default scope: 'public', host:
+'http://datastore-backend.herokuapp.com'
+    say Datastore::Client::CLI.set(args.first, args.last, options.scope,
+options.host)
+  end
+end
+

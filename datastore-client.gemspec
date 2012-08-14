@@ -14,4 +14,6 @@ Gem::Specification.new do |gem|
   gem.name          = "datastore-client"
   gem.require_paths = ["lib"]
   gem.version       = Datastore::Client::VERSION
+
+  gem.add_dependency 'json'
 end
