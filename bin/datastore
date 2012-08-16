@@ -8,8 +8,8 @@ require 'datastore-client/cli'
 require 'commander/import'
 
 program :name, 'Datastore Client CLI'
-program :version, '0.0.1'
-program :description, 'Get/Set data from the datastore'
+program :version, '0.0.2'
+program :description, 'Get/Set/Create data from the datastore'
 
 command :get do |c|
   c.syntax = 'get <UUID> [options]'
@@ -32,8 +32,18 @@ command :set do |c|
   c.action do |args, options|
     options.default scope: 'public', host:
 'http://datastore-backend.herokuapp.com'
-    say Datastore::Client::CLI.set(args.first, args.last, options.scope,
-options.host)
+    say Datastore::Client::CLI.set(args.first, args.last, options.scope, options.host)
   end
 end
 
+command :create do |c|
+  c.syntax = 'create <JSON> [options]'
+  c.description = 'Stores the JSON data and generates a new UUID in the datastore'
+  c.option '--scope STRING', String, 'private/public'
+  c.option '--host STRING', String, 'Host of the datastore'
+  c.action do |args, options|
+    options.default scope: 'public', host:
+'http://datastore-backend.herokuapp.com'
+    say Datastore::Client::CLI.create(args.first, options.scope, options.host)
+  end
+end

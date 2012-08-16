@@ -16,4 +16,11 @@ class Datastore::Client::CLI
     client.set(scope, uuid, data)
     "Saved:\n" + JSON.pretty_generate(data)
   end
+
+  def self.create(json, scope, host)
+    data = JSON.parse(json)
+    client = Datastore::Client.new(host)
+    uuid = client.create(scope, data)
+    "Created:\nUUID: #{uuid}\nData:\n" + JSON.pretty_generate(data)
+  end
 end
