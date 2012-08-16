@@ -38,6 +38,13 @@ describe Datastore::Client do
     @client.get(:public, @not_existing_uuid).must_equal data_set
   end
 
+  it "can create a new set (includes creating a new UUID)" do
+    data_set = {'some' => 'set', 'yeah' => 'yo'}
+    uuid = @client.create(:public, data_set)
+    uuid.wont_be_nil
+    uuid.empty?.must_equal false
+  end
+
   it "can update data" do
     data_set         = {'some' => 'set', 'yeah' => 'yo', 'yes' => 'ya'}
     updated_data_set = {'some' => 'set', 'yeah' => 'yo2', 'oh' => 'no'}
