@@ -22,7 +22,7 @@ module Datastore
         return nil if not_found?(e)
         raise e
       end
-      response.data
+      response.data['data']
     end
 
     def set(scope, uuid, data_set)
@@ -36,7 +36,7 @@ module Datastore
           raise e
         end
       end
-      response.data
+      response.data['data']
     end
 
     protected
