@@ -19,10 +19,10 @@ client = DataStore::Client.new('http://datastore-backend.dev')
 ### Retrieve a data set as JSON
 ```ruby
 # private set
-client.get(uuid)
+client.get(:private, uuid)
 
 # public set
-client.get(uuid, scope: :public)
+client.get(:public, uuid)
 ```
 
 If there is no data set for that UUID, ``nil`` is returned.
@@ -32,10 +32,8 @@ If there is no data set for that UUID, ``nil`` is returned.
 data_set = {hello: 'world'}
 
 # write private set
-client.set(uuid, data_set)
+client.set(:private, uuid, data_set)
 
 # write public set
-client.set(uuid, data_set, scope: :public)
-```
-
+client.set(:public, uuid, data_set)
 The client will automatically create a set if it the UUID has no set in the given scope yet.
