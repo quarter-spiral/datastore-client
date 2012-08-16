@@ -9,8 +9,8 @@ gem 'service-client', git: 'git@github.com:quarter-spiral/service-client.git', :
 gem 'commander'
 
 group :development, :test do
-  gem 'datastore-backend', path: '../datastore-backend'
-  #gem 'datastore-backend', git: 'git@github.com:quarter-spiral/datastore-backend.git', tag: 'release-0.0.3'
+  #gem 'datastore-backend', path: '../datastore-backend'
+  gem 'datastore-backend', git: 'git@github.com:quarter-spiral/datastore-backend.git', tag: 'release-0.0.4'
 
   gem 'uuid'
   gem 'rack-test'
