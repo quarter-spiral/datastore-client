@@ -13,7 +13,7 @@ gem install datastore-client
 ### Create a client
 ```ruby
 # connect to local
-client = DataStore::Client.new('http://datastore-backend.dev')
+client = Datastore::Client.new('http://datastore-backend.dev')
 ```
 
 ### Retrieve a data set as JSON
