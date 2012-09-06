@@ -1,3 +1,7 @@
+# 0.0.3
+
+* Makes it possible to use the improvements in ``datastore-backend`` 0.0.5 to change data sets partially
+
 # 0.0.2
 
 * Bumps ``datastore-backend`` to 0.0.4
