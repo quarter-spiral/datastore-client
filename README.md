@@ -40,6 +40,18 @@ client.set(:public, uuid, data_set)
 
 The client will automatically create a set if the UUID has no set in the given scope yet.
 
+It is also possible to only update a certain key inside of the data set:
+
+```ruby
+data_set = {hello: 'world', bli: {bla: 'blub'}}
+
+# create the set
+client.set(:public, uuid, data_set)
+
+# now update the thing to read: {hello: 'world', bli: {bla: 'blob'}}
+client.set(:public, uuid, 'blob', key: 'bli/bla')
+```
+
 ### Create a new data set
 
 If you want to store data for an entity that does not yet have a UUID

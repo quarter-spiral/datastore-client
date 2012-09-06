@@ -10,7 +10,7 @@ gem 'commander'
 
 group :development, :test do
   #gem 'datastore-backend', path: '../datastore-backend'
-  gem 'datastore-backend', git: 'git@github.com:quarter-spiral/datastore-backend.git', tag: 'release-0.0.4'
+  gem 'datastore-backend', git: 'git@github.com:quarter-spiral/datastore-backend.git', tag: 'release-0.0.5'
 
   gem 'uuid'
   gem 'rack-test'

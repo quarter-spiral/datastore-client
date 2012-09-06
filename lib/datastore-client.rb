@@ -10,9 +10,10 @@ module Datastore
 
     def initialize(url)
       @client = Service::Client.new(url)
-      @client.urls.add(:data_set, :post, "/#{API_VERSION}/:scope:/:uuid:")
-      @client.urls.add(:data_set, :get,  "/#{API_VERSION}/:scope:/:uuid:")
-      @client.urls.add(:data_set, :put,  "/#{API_VERSION}/:scope:/:uuid:")
+      @client.urls.add(:data_set,         :post, "/#{API_VERSION}/:scope:/:uuid:")
+      @client.urls.add(:data_set,         :get,  "/#{API_VERSION}/:scope:/:uuid:")
+      @client.urls.add(:data_set,         :put,  "/#{API_VERSION}/:scope:/:uuid:")
+      @client.urls.add(:partial_data_set, :put,  "/#{API_VERSION}/:scope:/:uuid:/:key:")
     end
 
     def get(scope, uuid)
@@ -25,12 +26,19 @@ module Datastore
       response.data['data']
     end
 
-    def set(scope, uuid, data_set)
+    def set(scope, uuid, data_set, options = {})
+      key = options[:key]
       url = @client.urls.data_set(scope: scope, uuid: uuid)
       response = begin
-        @client.put(url, data_set)
+        if key
+          sub_set = {key.split('/').last => data_set}
+          @client.put(@client.urls.partial_data_set(scope: scope, uuid: uuid, key: key), sub_set)
+        else
+          @client.put(url, data_set)
+        end
       rescue Service::Client::ServiceError => e
         if not_found?(e)
+          raise Service::Client::Error.new("Can not call set on a non existing UUID with the key option!") if key
           @client.post(url, data_set)
         else
           raise e

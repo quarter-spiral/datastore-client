@@ -52,4 +52,13 @@ describe Datastore::Client do
     @client.set(:public, @not_existing_uuid, updated_data_set).must_equal updated_data_set
     @client.get(:public, @not_existing_uuid).must_equal updated_data_set
   end
+
+  it "can update data partially" do
+    data_set = {'some' => {'cool' => 'set'}}
+    updated_data_set = {'some' => {'cool' => 'setty set'}}
+
+    @client.set(:public, @not_existing_uuid, data_set)
+    @client.set(:public, @not_existing_uuid, 'setty set', key: 'some/cool').must_equal updated_data_set
+    @client.get(:public, @not_existing_uuid).must_equal updated_data_set
+  end
 end
