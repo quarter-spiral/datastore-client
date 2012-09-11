@@ -1,17 +1,16 @@
 source 'https://rubygems.org'
+source "https://user:#{ENV['QS_GEMS_PASSWORD']}@privategems.herokuapp.com/"
 
 # Specify your gem's dependencies in datastore-client.gemspec
 gemspec
 
 # gem 'service-client', path: '../service-client'
-gem 'service-client', git: 'git@github.com:quarter-spiral/service-client.git', :tag => 'release-0.0.4'
-
+gem 'service-client', '0.0.4'
 gem 'commander'
 
 group :development, :test do
   #gem 'datastore-backend', path: '../datastore-backend'
-  gem 'datastore-backend', git: 'git@github.com:quarter-spiral/datastore-backend.git', tag: 'release-0.0.5'
-
+  gem 'datastore-backend', '0.0.5'
   gem 'uuid'
   gem 'rack-test'
   gem 'rake'
