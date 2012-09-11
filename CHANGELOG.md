@@ -1,3 +1,7 @@
+# 0.0.5
+
+* Moves private gem dependencies to the gemspec
+
 # 0.0.4
 
 * Moves to the private gem server
