@@ -5,8 +5,6 @@ source "https://user:#{ENV['QS_GEMS_PASSWORD']}@privategems.herokuapp.com/"
 gemspec
 
 # gem 'service-client', path: '../service-client'
-gem 'service-client', '0.0.4'
-gem 'commander'
 
 group :development, :test do
   #gem 'datastore-backend', path: '../datastore-backend'
