@@ -1,3 +1,7 @@
+# 0.0.4
+
+* Moves to the private gem server
+
 # 0.0.3
 
 * Makes it possible to use the improvements in ``datastore-backend`` 0.0.5 to change data sets partially
