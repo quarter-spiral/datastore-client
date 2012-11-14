@@ -1,3 +1,7 @@
+# 0.0.9 WIP
+
+* Adopts to the breaking changes in datastore-backend 0.0.10 which get rid of any scope
+
 # 0.0.8
 
 * Eases the internal dependencies

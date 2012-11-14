@@ -10,15 +10,15 @@ module Datastore
 
     def initialize(url)
       @client = Service::Client.new(url)
-      @client.urls.add(:data_set,         :post, "/#{API_VERSION}/:scope:/:uuid:")
-      @client.urls.add(:data_set,         :get,  "/#{API_VERSION}/:scope:/:uuid:")
-      @client.urls.add(:data_set,         :put,  "/#{API_VERSION}/:scope:/:uuid:")
-      @client.urls.add(:partial_data_set, :put,  "/#{API_VERSION}/:scope:/:uuid:/:key:")
+      @client.urls.add(:data_set,         :post, "/#{API_VERSION}/:uuid:")
+      @client.urls.add(:data_set,         :get,  "/#{API_VERSION}/:uuid:")
+      @client.urls.add(:data_set,         :put,  "/#{API_VERSION}/:uuid:")
+      @client.urls.add(:partial_data_set, :put,  "/#{API_VERSION}/:uuid:/:key:")
     end
 
-    def get(scope, uuid, token)
+    def get(uuid, token)
       response = begin
-        @client.get(@client.urls.data_set(scope: scope, uuid: uuid), token)
+        @client.get(@client.urls.data_set(uuid: uuid), token)
       rescue Service::Client::ServiceError => e
         return nil if not_found?(e)
         raise e
@@ -26,13 +26,13 @@ module Datastore
       response.data['data']
     end
 
-    def set(scope, uuid, token, data_set, options = {})
+    def set(uuid, token, data_set, options = {})
       key = options[:key]
-      url = @client.urls.data_set(scope: scope, uuid: uuid)
+      url = @client.urls.data_set(uuid: uuid)
       response = begin
         if key
           sub_set = {key.split('/').last => data_set}
-          @client.put(@client.urls.partial_data_set(scope: scope, uuid: uuid, key: key), token, sub_set)
+          @client.put(@client.urls.partial_data_set(uuid: uuid, key: key), token, sub_set)
         else
           @client.put(url, token, data_set)
         end
@@ -47,8 +47,8 @@ module Datastore
       response.data['data']
     end
 
-    def create(scope, token, data_set)
-      @client.post(@client.urls.data_set(scope: scope), token, data_set).data['uuid']
+    def create(token, data_set)
+      @client.post(@client.urls.data_set(uuid: nil), token, data_set).data['uuid']
     end
 
     protected
