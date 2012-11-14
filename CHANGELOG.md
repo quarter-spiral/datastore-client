@@ -1,4 +1,4 @@
-# 0.0.9 WIP
+# 0.0.9
 
 * Adopts to the breaking changes in datastore-backend 0.0.10 which get rid of any scope
 
