@@ -1,3 +1,7 @@
+# 0.0.10 WIP
+
+* Got rid of public/private scope in the README
+
 # 0.0.9
 
 * Adopts to the breaking changes in datastore-backend 0.0.10 which get rid of any scope
