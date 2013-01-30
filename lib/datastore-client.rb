@@ -13,17 +13,21 @@ module Datastore
       @client.urls.add(:data_set,         :post, "/#{API_VERSION}/:uuid:")
       @client.urls.add(:data_set,         :get,  "/#{API_VERSION}/:uuid:")
       @client.urls.add(:data_set,         :put,  "/#{API_VERSION}/:uuid:")
+      @client.urls.add(:batch_data_sets,  :get,  "/#{API_VERSION}/batch")
       @client.urls.add(:partial_data_set, :put,  "/#{API_VERSION}/:uuid:/:key:")
     end
 
     def get(uuid, token)
-      response = begin
-        @client.get(@client.urls.data_set(uuid: uuid), token)
-      rescue Service::Client::ServiceError => e
-        return nil if not_found?(e)
-        raise e
+      if uuid.kind_of?(Array)
+        response = @client.get(@client.urls.batch_data_sets(), token, uuids: uuid)
+        Hash[response.data.map {|uuid, data| [uuid, data['data']]}]
+      else
+        response = @client.get(@client.urls.data_set(uuid: uuid), token)
+        response.data['data']
       end
-      response.data['data']
+    rescue Service::Client::ServiceError => e
+      return nil if not_found?(e)
+      raise e
     end
 
     def set(uuid, token, data_set, options = {})

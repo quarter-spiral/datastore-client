@@ -23,6 +23,13 @@ client.get(uuid, token)
 
 If there is no data set for that UUID, ``nil`` is returned.
 
+### Retrieve multiple data sets as JSON
+```ruby
+client.get([uuid1, uuid2], token) # => {uuid1 => {"some" => "data"}, uuid2 => {"more" => "data"}}
+```
+
+If there is no data set for a UUID it won't show up in the result.
+
 ### Write a JSON data set
 ```ruby
 data_set = {hello: 'world'}

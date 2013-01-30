@@ -1,5 +1,6 @@
 # 0.0.10 WIP
 
+* Adds batch retrieval support
 * Got rid of public/private scope in the README
 
 # 0.0.9

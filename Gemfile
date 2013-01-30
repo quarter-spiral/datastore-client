@@ -8,7 +8,7 @@ gemspec
 
 group :development, :test do
   #gem 'datastore-backend', path: '../datastore-backend'
-  gem 'datastore-backend', '~> 0.0.11'
+  gem 'datastore-backend', '~> 0.0.14'
 
   gem 'rack-client'
 

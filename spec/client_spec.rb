@@ -63,6 +63,20 @@ describe Datastore::Client do
     @client.get(@not_existing_uuid, token).must_equal data_set
   end
 
+  it "can retrieve multiple data sets" do
+    data_set_1 = {'some' => 'set', 'yeah' => 'yo'}
+    data_set_2 = {'else' => 'yes', 'yoah' => 'it'}
+
+    second_uuid = UUID.new.generate
+    @client.set(@not_existing_uuid, token, data_set_1)
+    @client.set(second_uuid, token, data_set_2)
+
+    @client.get([@not_existing_uuid, second_uuid], token).must_equal({
+      @not_existing_uuid => data_set_1,
+      second_uuid => data_set_2
+    })
+  end
+
   it "can create a new set (includes creating a new UUID)" do
     data_set = {'some' => 'set', 'yeah' => 'yo'}
     uuid = @client.create(token, data_set)
