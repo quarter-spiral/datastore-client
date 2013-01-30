@@ -1,4 +1,4 @@
-# 0.0.10 WIP
+# 0.0.10
 
 * Adds batch retrieval support
 * Got rid of public/private scope in the README
