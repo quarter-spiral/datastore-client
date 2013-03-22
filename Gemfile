@@ -7,15 +7,17 @@ gemspec
 # gem 'service-client', path: '../service-client'
 
 group :development, :test do
-  #gem 'datastore-backend', path: '../datastore-backend'
-  gem 'datastore-backend', '~> 0.0.14'
+  gem 'datastore-backend', path: '../datastore-backend'
+  #gem 'datastore-backend', '~> 0.0.14'
+  gem 'service-client', path: '../service-client'
 
   gem 'rack-client'
 
-  gem 'auth-backend', '~> 0.0.3'
+  gem 'auth-backend', '~> 0.0.28'
   gem 'sqlite3'
   gem 'sinatra_warden', git: 'https://github.com/quarter-spiral/sinatra_warden.git'
   gem 'songkick-oauth2-provider', git: 'https://github.com/quarter-spiral/oauth2-provider.git'
+  gem 'nokogiri'
 
   gem 'auth-client', '~> 0.0.6'
 

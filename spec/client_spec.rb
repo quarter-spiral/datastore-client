@@ -25,7 +25,8 @@ end
 
 require 'auth-backend/test_helpers'
 auth_helpers = Auth::Backend::TestHelpers.new(AUTH_APP)
-token = auth_helpers.get_token
+app = auth_helpers.create_app!
+token = auth_helpers.get_app_token(app[:id], app[:secret])
 
 describe Datastore::Client do
   before do
@@ -77,16 +78,20 @@ describe Datastore::Client do
     })
   end
 
-  it "can create a new set (includes creating a new UUID)" do
+  it "cannot create a new set without a uuid" do
     data_set = {'some' => 'set', 'yeah' => 'yo'}
-    uuid = @client.create(token, data_set)
-    uuid.wont_be_nil
-    uuid.empty?.must_equal false
+    begin
+      @client.create(token, data_set)
+      flunk "Should throw a ResponseError"
+    rescue Service::Client::ResponseError => e
+      # expected
+    end
   end
 
   it "can update data" do
     data_set         = {'some' => 'set', 'yeah' => 'yo', 'yes' => 'ya'}
     updated_data_set = {'some' => 'set', 'yeah' => 'yo2', 'oh' => 'no'}
+
     @client.set(@not_existing_uuid, token, data_set).must_equal data_set
     @client.set(@not_existing_uuid, token, updated_data_set).must_equal updated_data_set
     @client.get(@not_existing_uuid, token).must_equal updated_data_set

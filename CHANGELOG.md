@@ -1,3 +1,7 @@
+# 0.0.11 WIP
+
+* Bumps service-client dependency
+
 # 0.0.10
 
 * Adds batch retrieval support
