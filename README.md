@@ -50,17 +50,3 @@ client.set(uuid, token, data_set)
 # now update the thing to read: {hello: 'world', bli: {bla: 'blob'}}
 client.set(uuid, token, 'blob', key: 'bli/bla')
 ```
-
-### Create a new data set
-
-If you want to store data for an entity that does not yet have a UUID
-you can do so:
-
-```ruby
-data_set = {hello: 'world'}
-
-client.create(token, data_set)
-```
-
-**Instead of the data set itself the ``create`` will return the UUID of
-the created set.**

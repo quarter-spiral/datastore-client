@@ -1,5 +1,6 @@
 # 0.0.11 WIP
 
+* Removes deprecated ``#create`` method
 * Bumps service-client dependency
 
 # 0.0.10

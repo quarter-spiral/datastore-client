@@ -78,16 +78,6 @@ describe Datastore::Client do
     })
   end
 
-  it "cannot create a new set without a uuid" do
-    data_set = {'some' => 'set', 'yeah' => 'yo'}
-    begin
-      @client.create(token, data_set)
-      flunk "Should throw a ResponseError"
-    rescue Service::Client::ResponseError => e
-      # expected
-    end
-  end
-
   it "can update data" do
     data_set         = {'some' => 'set', 'yeah' => 'yo', 'yes' => 'ya'}
     updated_data_set = {'some' => 'set', 'yeah' => 'yo2', 'oh' => 'no'}

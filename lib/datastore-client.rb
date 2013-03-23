@@ -51,10 +51,6 @@ module Datastore
       response.data['data']
     end
 
-    def create(token, data_set)
-      @client.post(@client.urls.data_set(uuid: nil), token, data_set).data['uuid']
-    end
-
     protected
     def not_found?(service_error)
       service_error.error == "Not found"
