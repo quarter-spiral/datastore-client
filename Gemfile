@@ -4,12 +4,9 @@ source "https://user:We267RFF7BfwVt4LdqFA@privategems.herokuapp.com/"
 # Specify your gem's dependencies in datastore-client.gemspec
 gemspec
 
-# gem 'service-client', path: '../service-client'
-
 group :development, :test do
-  gem 'datastore-backend', path: '../datastore-backend'
-  #gem 'datastore-backend', '~> 0.0.14'
-  gem 'service-client', path: '../service-client'
+  #gem 'datastore-backend', path: '../datastore-backend'
+  gem 'datastore-backend', '~> 0.0.18'
 
   gem 'rack-client'
 
