@@ -16,6 +16,6 @@ Gem::Specification.new do |gem|
   gem.version       = Datastore::Client::VERSION
 
   gem.add_dependency 'json'
-  gem.add_dependency 'service-client', '>=0.0.12'
+  gem.add_dependency 'service-client', '>=0.0.14'
   gem.add_dependency 'commander'
 end

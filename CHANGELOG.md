@@ -1,3 +1,7 @@
+# 0.0.12 / Unreleased
+
+* Bumps service-client dependency
+
 # 0.0.11
 
 * Removes deprecated ``#create`` method
